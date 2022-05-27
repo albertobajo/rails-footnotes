@@ -32,10 +32,11 @@ module Footnotes
 
       protected
 
-        def filename
-          @filename ||= self.class.template[:file]
-        end
+      def filename
+        return @filename if defined?(@filename)
 
+        @filename = self.class.template.try(:[], :file)
+      end
     end
   end
 end
